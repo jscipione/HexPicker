@@ -14,6 +14,7 @@
 #include <Alignment.h>
 #include <ControlLook.h>
 #include <LayoutBuilder.h>
+#include <PickerProtocol.h>
 #include <Rect.h>
 #include <Size.h>
 #include <SpaceLayoutItem.h>
@@ -21,12 +22,12 @@
 #include "Hexagon.h"
 
 
-HexPicker::HexPicker(rgb_color color)
+HexPicker::HexPicker()
 	:
 	BView("hexagonal color picker", B_WILL_DRAW),
-	fColor(color)
+	fColor(make_color(255, 0, 255))
 {
-	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
+	SetViewUIColor(B_PANEL_BACKGROUND_COLOR);
 
 	for (int32 i = 0; i < kMaxHexagonCount; i++)
 		fHexagonList[i] = new Hexagon();
@@ -474,26 +475,16 @@ HexPicker::AttachedToWindow()
 void
 HexPicker::MessageReceived(BMessage* message)
 {
-	if (message->what == B_VALUE_CHANGED || message->WasDropped()) {
-		char* name;
-		type_code type;
-		if (message->GetInfo(B_RGB_COLOR_TYPE, 0, &name, &type) != B_OK)
-			return BView::MessageReceived(message);
-
-		rgb_color* color;
-		ssize_t size;
-		if (message->FindData(name, type, (const void**)&color, &size)
-				== B_OK) {
-			SetColor(*color);
-
-			bool isInitial = false;
-			if (message->FindBool("be:initialValue", &isInitial) != B_OK
-				|| !isInitial) {
-				// forward message to window unless initial value
-				message->what = B_VALUE_CHANGED;
-				Window()->PostMessage(message);
-			}
-		}
+	char* name;
+	type_code type;
+	rgb_color* color;
+	ssize_t size;
+	if (message->GetInfo(B_RGB_COLOR_TYPE, 0, &name, &type) == B_OK
+		&& message->FindData(name, type, (const void**)&color, &size) == B_OK) {
+		SetColor(*color);
+		message->AddPointer("be:source", (void*)this);
+		message->AddMessenger("be:sender", BMessenger(this));
+		Window()->PostMessage(message);
 	} else
 		BView::MessageReceived(message);
 }
@@ -503,6 +494,9 @@ void
 HexPicker::SetColor(rgb_color color)
 {
 	color.alpha = 255;
+	if (fColor == color)
+		return;
+
 	fColor = color;
 
 	// update the hex text control

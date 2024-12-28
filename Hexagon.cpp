@@ -11,6 +11,7 @@
 
 #include <Message.h>
 #include <Point.h>
+#include <PickerProtocol.h>
 #include <Rect.h>
 #include <Shape.h>
 
@@ -20,7 +21,8 @@ Hexagon::Hexagon()
 	BControl(BRect(0, 0, kHexagonWidth - 1, kHexagonHeight - 1), "Hexagon",
 		"", new BMessage(B_VALUE_CHANGED), B_FOLLOW_NONE, B_WILL_DRAW),
 	fColor((rgb_color) { 255, 0, 0 }),
-	fIsSelected(false)
+	fIsSelected(false),
+	fMouseDownMessage(NULL)
 {
 	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
 }
@@ -31,7 +33,8 @@ Hexagon::Hexagon(rgb_color color)
 	BControl(BRect(0, 0, kHexagonWidth - 1, kHexagonHeight - 1), "Hexagon",
 		"", new BMessage(B_VALUE_CHANGED), B_FOLLOW_NONE, B_WILL_DRAW),
 	fColor(color),
-	fIsSelected(false)
+	fIsSelected(false),
+	fMouseDownMessage(NULL)
 {
 	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
 }
@@ -117,10 +120,11 @@ Hexagon::Invoke(BMessage* message)
 	if (message == NULL)
 		message = Message();
 
-	message->RemoveName("be:value");
-	message->AddData("be:value", B_RGB_COLOR_TYPE, &fColor, sizeof(fColor));
-	message->RemoveName("when");
-	message->AddInt64("when", (int64)system_time());
+	message->AddData("be:value", B_RGB_COLOR_TYPE,
+		&fColor, sizeof(fColor));
+	message->AddInt64("be:when", (int64)system_time());
+	message->AddPointer("be:source", (void*)Parent());
+	message->AddMessenger("be:sender", BMessenger(Parent()));
 
 	return BControl::Invoke(message);
 }
@@ -129,8 +133,20 @@ Hexagon::Invoke(BMessage* message)
 void
 Hexagon::MouseDown(BPoint where)
 {
-	Invoke();
+	fMouseDownMessage = new BMessage(B_VALUE_CHANGED);
+	Invoke(fMouseDownMessage);
+
 	BControl::MouseDown(where);
+}
+
+
+void
+Hexagon::MouseUp(BPoint where)
+{
+	delete fMouseDownMessage;
+	fMouseDownMessage = NULL;
+
+	BControl::MouseUp(where);
 }
 
 
@@ -146,7 +162,7 @@ Hexagon::SetColor(rgb_color color)
 {
 	color.alpha = 255;
 	fColor = color;
-	if (Window())
+	if (Window() != NULL)
 		Invalidate(Bounds());
 }
 

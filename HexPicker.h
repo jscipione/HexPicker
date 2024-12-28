@@ -20,7 +20,7 @@ class Hexagon;
 
 class HexPicker : public BView {
 public:
-								HexPicker(rgb_color color);
+								HexPicker();
 	virtual						~HexPicker();
 
 	virtual	void				AttachedToWindow();

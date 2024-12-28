@@ -24,7 +24,6 @@ public:
 
 private:
 			HexPickerPanel*		fPanel;
-			rgb_color			fDefaultColor;
 };
 
 
