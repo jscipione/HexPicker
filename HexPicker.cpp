@@ -42,8 +42,7 @@ HexPicker::HexPicker()
 			.AddGroup(B_VERTICAL, 0)
 				.AddGroup(B_VERTICAL, -kHexagonHeight / 3.0f)
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							kHexagonWidth * 3))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 3))
 						.Add(fHexagonList[0])
 						.Add(fHexagonList[1])
 						.Add(fHexagonList[2])
@@ -51,12 +50,10 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[4])
 						.Add(fHexagonList[5])
 						.Add(fHexagonList[6])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							kHexagonWidth * 3))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 3))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							floorf(kHexagonWidth * 2.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(floorf(kHexagonWidth * 2.5)))
 						.Add(fHexagonList[7])
 						.Add(fHexagonList[8])
 						.Add(fHexagonList[9])
@@ -65,12 +62,10 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[12])
 						.Add(fHexagonList[13])
 						.Add(fHexagonList[14])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							ceilf(kHexagonWidth * 2.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 2.5)))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							kHexagonWidth * 2))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 2))
 						.Add(fHexagonList[15])
 						.Add(fHexagonList[16])
 						.Add(fHexagonList[17])
@@ -80,12 +75,10 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[21])
 						.Add(fHexagonList[22])
 						.Add(fHexagonList[23])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							kHexagonWidth * 2))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 2))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							floorf(kHexagonWidth * 1.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(floorf(kHexagonWidth * 1.5)))
 						.Add(fHexagonList[24])
 						.Add(fHexagonList[25])
 						.Add(fHexagonList[26])
@@ -96,12 +89,10 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[31])
 						.Add(fHexagonList[32])
 						.Add(fHexagonList[33])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							ceilf(kHexagonWidth * 1.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 1.5)))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							kHexagonWidth))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth))
 						.Add(fHexagonList[34])
 						.Add(fHexagonList[35])
 						.Add(fHexagonList[36])
@@ -113,12 +104,10 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[42])
 						.Add(fHexagonList[43])
 						.Add(fHexagonList[44])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							kHexagonWidth))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							floorf(kHexagonWidth * 0.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(floorf(kHexagonWidth * 0.5)))
 						.Add(fHexagonList[45])
 						.Add(fHexagonList[46])
 						.Add(fHexagonList[47])
@@ -131,8 +120,7 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[54])
 						.Add(fHexagonList[55])
 						.Add(fHexagonList[56])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							ceilf(kHexagonWidth * 0.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 0.5)))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
 						.Add(fHexagonList[57])
@@ -150,8 +138,7 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[69])
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							floorf(kHexagonWidth * 0.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(floorf(kHexagonWidth * 0.5)))
 						.Add(fHexagonList[70])
 						.Add(fHexagonList[71])
 						.Add(fHexagonList[72])
@@ -164,8 +151,7 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[79])
 						.Add(fHexagonList[80])
 						.Add(fHexagonList[81])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							ceilf(kHexagonWidth * 0.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 0.5)))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
 						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
@@ -181,12 +167,10 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[90])
 						.Add(fHexagonList[91])
 						.Add(fHexagonList[92])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							kHexagonWidth))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							floorf(kHexagonWidth * 1.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(floorf(kHexagonWidth * 1.5)))
 						.Add(fHexagonList[93])
 						.Add(fHexagonList[94])
 						.Add(fHexagonList[95])
@@ -197,12 +181,10 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[100])
 						.Add(fHexagonList[101])
 						.Add(fHexagonList[102])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							ceilf(kHexagonWidth * 1.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 1.5)))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							kHexagonWidth * 2))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 2))
 						.Add(fHexagonList[103])
 						.Add(fHexagonList[104])
 						.Add(fHexagonList[105])
@@ -212,12 +194,10 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[109])
 						.Add(fHexagonList[110])
 						.Add(fHexagonList[111])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							kHexagonWidth * 2))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 2))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							floorf(kHexagonWidth * 2.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(floorf(kHexagonWidth * 2.5)))
 						.Add(fHexagonList[112])
 						.Add(fHexagonList[113])
 						.Add(fHexagonList[114])
@@ -226,12 +206,10 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[117])
 						.Add(fHexagonList[118])
 						.Add(fHexagonList[119])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							ceilf(kHexagonWidth * 2.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 2.5)))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							kHexagonWidth * 3))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 3))
 						.Add(fHexagonList[120])
 						.Add(fHexagonList[121])
 						.Add(fHexagonList[122])
@@ -239,14 +217,12 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[124])
 						.Add(fHexagonList[125])
 						.Add(fHexagonList[126])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							kHexagonWidth * 3))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 3))
 					.End()
 				.End()
 				.AddGroup(B_VERTICAL, -kHexagonHeight / 3.0f)
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							floorf(kHexagonWidth * 2.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(floorf(kHexagonWidth * 2.5)))
 						.Add(fHexagonList[127])
 						.Add(fHexagonList[128])
 						.Add(fHexagonList[129])
@@ -255,12 +231,10 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[132])
 						.Add(fHexagonList[133])
 						.Add(fHexagonList[134])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							ceilf(kHexagonWidth * 2.5)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 2.5)))
 					.End()
 					.AddGroup(B_HORIZONTAL, 0)
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							floorf(kHexagonWidth * 3.0)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(floorf(kHexagonWidth * 3.0)))
 						.Add(fHexagonList[135])
 						.Add(fHexagonList[136])
 						.Add(fHexagonList[137])
@@ -269,8 +243,7 @@ HexPicker::HexPicker()
 						.Add(fHexagonList[140])
 						.Add(fHexagonList[141])
 						.Add(fHexagonList[142])
-						.Add(BSpaceLayoutItem::CreateHorizontalStrut(
-							ceilf(kHexagonWidth * 2.0)))
+						.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 2.0)))
 					.End()
 				.End()
 			.End()
@@ -462,10 +435,8 @@ HexPicker::AttachedToWindow()
 	BTextView* hexTextView = fHexTextControl->TextView();
 	hexTextView->SetMaxBytes(6);
 	for (int32 j = 32; j < 255; ++j) {
-		if (!((j >= '0' && j <= '9') || (j >= 'a' && j <= 'f')
-			|| (j >= 'A' && j <= 'F'))) {
+		if (!((j >= '0' && j <= '9') || (j >= 'a' && j <= 'f') || (j >= 'A' && j <= 'F')))
 			hexTextView->DisallowChar(j);
-		}
 	}
 
 	SetColor(fColor);
@@ -482,9 +453,16 @@ HexPicker::MessageReceived(BMessage* message)
 	if (message->GetInfo(B_RGB_COLOR_TYPE, 0, &name, &type) == B_OK
 		&& message->FindData(name, type, (const void**)&color, &size) == B_OK) {
 		SetColor(*color);
-		message->AddPointer("be:source", (void*)this);
-		message->AddMessenger("be:sender", BMessenger(this));
-		Window()->PostMessage(message);
+
+		BMessenger messenger;
+		if (message->FindMessenger("be:sender", &messenger) == B_OK
+			&& messenger != BMessenger(Window())) {
+			message->AddData("be:value", B_RGB_COLOR_TYPE, color, sizeof(*color));
+			message->AddMessenger("be:sender", BMessenger(this));
+			message->AddPointer("source", this);
+			message->AddInt64("when", (int64)system_time());
+			Window()->PostMessage(message);
+		}
 	} else
 		BView::MessageReceived(message);
 }

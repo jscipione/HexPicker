@@ -120,10 +120,7 @@ Hexagon::Invoke(BMessage* message)
 	if (message == NULL)
 		message = Message();
 
-	message->AddData("be:value", B_RGB_COLOR_TYPE,
-		&fColor, sizeof(fColor));
-	message->AddInt64("be:when", (int64)system_time());
-	message->AddPointer("be:source", (void*)Parent());
+	message->AddData("be:value", B_RGB_COLOR_TYPE, &fColor, sizeof(fColor));
 	message->AddMessenger("be:sender", BMessenger(Parent()));
 
 	return BControl::Invoke(message);
