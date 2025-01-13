@@ -87,6 +87,7 @@ HexPickerApp::ReadyToRun()
 
 		BLayoutBuilder::Group<>(window, B_VERTICAL, 0)
 			.Add(new HexPicker())
+			.SetInsets(B_USE_DEFAULT_SPACING)
 			.End();
 		window->Show();
 	}
