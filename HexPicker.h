@@ -1,5 +1,6 @@
 /*
- * Copyright 2012-20132023 John Scipione All rights reserved.
+ * Copyright 2012-2025 John Scipione. All rights reserved.
+ *
  * Distributed under the terms of the MIT License.
  */
 #ifndef HEX_PICKER_H
@@ -25,15 +26,21 @@ public:
 
 	virtual	void				AttachedToWindow();
 	virtual	void				MessageReceived(BMessage* message);
+	virtual	void				MouseDown(BPoint where);
+	virtual	void				MouseMoved(BPoint where, uint32 code,
+									const BMessage* dragMessage);
+	virtual	void				MouseUp(BPoint where);
 
 			rgb_color			Color() const { return fColor; };
 			void				SetColor(rgb_color color);
 
 private:
 			rgb_color			fColor;
-			Hexagon*			fHexagonList[kMaxHexagonCount];
-			int32				fHexagonCount;
 			BTextControl*		fHexTextControl;
+			int32				fHexagonCount;
+			Hexagon*			fHexagonList[kMaxHexagonCount];
+			BPoint				fMouseOffset;
+			bool				fMouseDown : 1;
 };
 
 

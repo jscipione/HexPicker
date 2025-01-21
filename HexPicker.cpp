@@ -1,5 +1,6 @@
 /*
- * Copyright 2012-2023 John Scipione All rights reserved.
+ * Copyright 2012-2025 John Scipione. All rights reserved.
+ *
  * Distributed under the terms of the MIT License.
  *
  * Authors:
@@ -22,14 +23,21 @@
 #include "Hexagon.h"
 
 
+static const rgb_color kRed = make_color(255, 0, 0, 255);
+
+
 HexPicker::HexPicker()
 	:
 	BView("hexagonal color picker", B_WILL_DRAW),
-	fColor(make_color(255, 0, 255))
+	fColor(kRed),
+	fHexTextControl(NULL),
+	fHexagonCount(kMaxHexagonCount),
+	fMouseOffset(B_ORIGIN),
+	fMouseDown(false)
 {
 	SetViewUIColor(B_PANEL_BACKGROUND_COLOR);
 
-	for (int32 i = 0; i < kMaxHexagonCount; i++)
+	for (int32 i = 0; i < fHexagonCount; i++)
 		fHexagonList[i] = new Hexagon();
 
 	fHexTextControl = new BTextControl(NULL, "#", NULL, NULL);
@@ -266,7 +274,7 @@ HexPicker::~HexPicker()
 void
 HexPicker::AttachedToWindow()
 {
-	for (int32 i = 0; i < kMaxHexagonCount; i++)
+	for (int32 i = 0; i < fHexagonCount; i++)
 		fHexagonList[i]->SetTarget(this);
 
 	fHexagonList[0]->SetColor(make_color(0, 51, 102));
@@ -462,6 +470,50 @@ HexPicker::MessageReceived(BMessage* message)
 
 
 void
+HexPicker::MouseDown(BPoint where)
+{
+	fMouseOffset = where;
+	fMouseDown = true;
+
+	if (Window() == NULL)
+		return BView::MouseDown(where);
+
+	Window()->Activate();
+
+	SetMouseEventMask(B_POINTER_EVENTS, B_NO_POINTER_HISTORY
+		| B_SUSPEND_VIEW_FOCUS | B_LOCK_WINDOW_FOCUS);
+
+	BView::MouseDown(where);
+}
+
+
+void
+HexPicker::MouseMoved(BPoint where, uint32 code, const BMessage* dragMessage)
+{
+	if (Window() == NULL || Window()->CurrentMessage() == NULL)
+		return BView::MouseMoved(where, code, dragMessage);
+
+	uint32 buttons = Window()->CurrentMessage()->GetInt32("buttons", 0);
+	if (fMouseDown && buttons == B_PRIMARY_MOUSE_BUTTON) {
+		BPoint windowPosition = Window()->Frame().LeftTop();
+		Window()->MoveTo(windowPosition.x + where.x - fMouseOffset.x,
+			windowPosition.y + where.y - fMouseOffset.y);
+	} else
+		BView::MouseMoved(where, code, dragMessage);
+}
+
+
+void
+HexPicker::MouseUp(BPoint where)
+{
+	fMouseOffset = B_ORIGIN;
+	fMouseDown = false;
+
+	BView::MouseUp(where);
+}
+
+
+void
 HexPicker::SetColor(rgb_color color)
 {
 	color.alpha = 255;
@@ -479,7 +531,7 @@ HexPicker::SetColor(rgb_color color)
 	sprintf(hexString, "%.6X", red | green | blue);
 	fHexTextControl->TextView()->SetText(hexString);
 
-	for (int32 index = 0; index < kMaxHexagonCount; index++) {
+	for (int32 index = 0; index < fHexagonCount; index++) {
 		if (fHexagonList[index]->Color() == color)
 			fHexagonList[index]->SetSelected(true);
 		else if (fHexagonList[index]->Selected())
