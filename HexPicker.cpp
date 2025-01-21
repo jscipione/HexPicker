@@ -454,15 +454,8 @@ HexPicker::MessageReceived(BMessage* message)
 		&& message->FindData(name, type, (const void**)&color, &size) == B_OK) {
 		SetColor(*color);
 
-		BMessenger messenger;
-		if (message->FindMessenger("be:sender", &messenger) == B_OK
-			&& messenger != BMessenger(Window())) {
-			message->AddData("be:value", B_RGB_COLOR_TYPE, color, sizeof(*color));
-			message->AddMessenger("be:sender", BMessenger(this));
-			message->AddPointer("source", this);
-			message->AddInt64("when", (int64)system_time());
+		if (!message->IsSourceRemote())
 			Window()->PostMessage(message);
-		}
 	} else
 		BView::MessageReceived(message);
 }
@@ -477,16 +470,19 @@ HexPicker::SetColor(rgb_color color)
 
 	fColor = color;
 
-	// update the hex text control
-	char string[8];
-	sprintf(string, "%.6X", (color.red << 16) | (color.green << 8)
-		| color.blue);
-	fHexTextControl->TextView()->SetText(string);
+	int red = color.red << 16;
+	int green = color.green << 8;
+	int blue = color.blue;
 
-	for (int32 i = 0; i < kMaxHexagonCount; i++) {
-		if (fHexagonList[i]->Color() == color)
-			fHexagonList[i]->SetSelected(true);
-		else if (fHexagonList[i]->Selected())
-			fHexagonList[i]->SetSelected(false);
+	// update the hex text control
+	char hexString[8];
+	sprintf(hexString, "%.6X", red | green | blue);
+	fHexTextControl->TextView()->SetText(hexString);
+
+	for (int32 index = 0; index < kMaxHexagonCount; index++) {
+		if (fHexagonList[index]->Color() == color)
+			fHexagonList[index]->SetSelected(true);
+		else if (fHexagonList[index]->Selected())
+			fHexagonList[index]->SetSelected(false);
 	}
 }
