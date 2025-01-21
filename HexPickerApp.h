@@ -7,12 +7,22 @@
 
 
 #include <Application.h>
+#include <ColorPickerPanel.h>
 
 
 extern const char* kSignature;
 
 
-class HexPickerPanel;
+using BPrivate::BColorPickerPanel;
+
+
+class HexPicker;
+
+class HexPickerPanel : public BColorPickerPanel {
+public:
+					HexPickerPanel(HexPicker* view, BMessage* message);
+	virtual			~HexPickerPanel();
+};
 
 class HexPickerApp : public BApplication {
 public:

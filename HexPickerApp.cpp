@@ -9,7 +9,6 @@
 
 #include "HexPickerApp.h"
 
-#include <ColorPickerPanel.h>
 #include <LayoutBuilder.h>
 #include <PickerProtocol.h>
 #include <Window.h>
@@ -20,14 +19,10 @@
 const char* kSignature = "application/x-vnd.Haiku-HexPicker";
 
 
+using BPrivate::BColorPickerPanel;
+
+
 //	#pragma mark - HexPickerPanel
-
-
-class HexPickerPanel : public BColorPickerPanel {
-public:
-					HexPickerPanel(HexPicker* view, BMessage* message);
-	virtual			~HexPickerPanel();
-};
 
 
 HexPickerPanel::HexPickerPanel(HexPicker* view, BMessage* message)
