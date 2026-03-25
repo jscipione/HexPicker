@@ -20,7 +20,9 @@ class HexPicker;
 
 class HexPickerPanel : public BColorPickerPanel {
 public:
-					HexPickerPanel(HexPicker* view, BMessage* message);
+					HexPickerPanel(HexPicker* view,
+						BMessage* message,
+						BMessage* options);
 	virtual			~HexPickerPanel();
 };
 

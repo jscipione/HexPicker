@@ -25,9 +25,9 @@ using BPrivate::BColorPickerPanel;
 //	#pragma mark - HexPickerPanel
 
 
-HexPickerPanel::HexPickerPanel(HexPicker* view, BMessage* message)
+HexPickerPanel::HexPickerPanel(HexPicker* view, BMessage* message, BMessage* options)
 	:
-	BColorPickerPanel((BView*)view, message, BColorPickerPanel::B_CELLS_10x4,
+	BColorPickerPanel((BView*)view, message, options,
 		"Pick a color")
 {
 }
@@ -61,7 +61,9 @@ HexPickerApp::MessageReceived(BMessage* message)
 		// This is the initial open message that ModuleProxy::Invoke
 		// is sending us. Pass it on to the new color picker dialog
 		// where all the details will be found.
-		fPanel = new HexPickerPanel(new HexPicker(), message);
+		BMessage* options = new BMessage();
+		options->AddInt32("layout", BColorPickerPanel::B_CELLS_10x4);
+		fPanel = new HexPickerPanel(new HexPicker(), message, options);
 	}
 
 	BApplication::MessageReceived(message);
@@ -90,11 +92,11 @@ HexPickerApp::ReadyToRun()
 
 
 extern "C" BColorPickerPanel*
-instantiate_color_picker(BView* view, BMessage* message,
-	BColorPickerPanel::color_cells_layout layout, const char* name,
-	window_look look, window_feel feel, uint32 flags, uint32 workspace)
+instantiate_color_picker(BView* view, BMessage* message, BMessage* options,
+	const char* name, window_look look, window_feel feel, uint32 flags,
+	uint32 workspace)
 {
-	return new HexPickerPanel((HexPicker*)view, message);
+	return new HexPickerPanel((HexPicker*)view, message, options);
 }
 
 
