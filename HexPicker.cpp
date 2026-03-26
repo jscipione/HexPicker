@@ -46,7 +46,7 @@ HexPicker::HexPicker()
 
 	BLayoutBuilder::Group<>(this, B_HORIZONTAL, B_USE_DEFAULT_SPACING)
 		.AddGlue()
-		.AddGroup(B_VERTICAL, 0)
+		.AddGroup(B_VERTICAL, B_USE_SMALL_SPACING)
 			.AddGroup(B_HORIZONTAL, 0)
 				.AddGlue()
 				.AddGroup(B_VERTICAL, 0)
